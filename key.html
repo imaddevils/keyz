@@ -10,26 +10,49 @@
         <input type="text" id="inputBox" placeholder="Enter API link">
         <button onclick="sendRequest()">Enter</button>
     </div>
+    <div id="message"></div>
 
     <script>
+        const api_url = "https://stickx.top/api-arceusx/";
+        const api_key = "E99l9NOctud3vmu6bPne";
+
         function sendRequest() {
             var inputBox = document.getElementById('inputBox');
             var apiUrl = inputBox.value;
 
             // Extracting HWID from the provided API link
             var url = new URL(apiUrl);
-            var hwid = url.searchParams.get("hwid");
+            var searchParams = new URLSearchParams(url.search);
+            var hwid = searchParams.get("hwid");
 
             if (!hwid) {
                 alert("HWID not found in the provided link!");
                 return;
             }
 
-            // Constructing the API URL with the extracted HWID
-            var constructedApiUrl = "https://stickx.top/api-arceusx/?hwid=" + hwid + "&api_key=E99l9NOctud3vmu6bPne";
+            // Send the "Finishing the Key System, please wait up to 5 seconds!" message
+            var messageDiv = document.getElementById('message');
+            messageDiv.textContent = "Finishing the Key System, please wait up to 5 seconds!";
 
-            // Redirecting to the constructed API URL
-            window.location.href = constructedApiUrl;
+            // Make the API request
+            fetch(`${api_url}?hwid=${hwid}&api_key=${api_key}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.key === "Key System completed!") {
+                    messageDiv.innerHTML = "<strong># Key System Completed!</strong>";
+                } else {
+                    messageDiv.innerHTML = "<strong># Failed, try again.</strong>";
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                messageDiv.innerHTML = "<strong># Failed, try again.</strong>";
+            });
         }
     </script>
 </body>
