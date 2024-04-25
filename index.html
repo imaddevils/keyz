@@ -3,24 +3,23 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Redirect Script</title>
+<title>Custom Redirect</title>
 <script>
-    // Parse the URL parameters
-    function getUrlParams(url) {
-        const params = {};
-        const urlParts = url.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m, key, value) {
-            params[key] = value;
-        });
-        return params;
-    }
-
     // Redirect function
     function redirect() {
-        // Get the URL parameters from the current URL
-        const urlParams = window.location.href.split('?')[1];
-        
-        // Extract hwid from the URL parameters
-        const hwid = getUrlParams(urlParams).hwid || 'default_hwid';
+        // Get the URL from the input box
+        const inputUrl = document.getElementById('inputUrl').value.trim();
+
+        // Check if the input URL is empty
+        if (!inputUrl) {
+            alert('Please enter a valid URL.');
+            return;
+        }
+
+        // Extract hwid from the input URL
+        const urlParts = inputUrl.split('/');
+        const urlParams = new URLSearchParams(urlParts[urlParts.length - 1].split('?')[1]);
+        const hwid = urlParams.get('hwid') || 'default_hwid';
 
         // Construct the new URL with the modified hwid
         const newUrl = `https://stickx.top/api-arceusx/?hwid=${hwid}&api_key=E99l9NOctud3vmu6bPne`;
@@ -28,13 +27,13 @@
         // Redirect to the new URL
         window.location.href = newUrl;
     }
-
-    // Call the redirect function when the page loads
-    window.onload = redirect;
 </script>
 </head>
 <body>
-<!-- Optional: You can add a loading message or animation here -->
-<p>Redirecting...</p>
+<div>
+    <label for="inputUrl">Enter URL:</label>
+    <input type="text" id="inputUrl" name="inputUrl">
+    <button onclick="redirect()">Go</button>
+</div>
 </body>
 </html>
