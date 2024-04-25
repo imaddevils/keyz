@@ -1,44 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Custom Redirect</title>
-<script>
-    // Redirect function
-    function redirect() {
-        // Get the URL from the input box
-        const inputUrl = document.getElementById('inputUrl').value.trim();
-
-        // Check if the input URL is empty
-        if (!inputUrl) {
-            alert('Please enter a valid URL.');
-            return;
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Key System Completer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
         }
-
-        // Extract hwid from the input URL
-        const url = new URL(inputUrl);
-        const hwidParam = url.searchParams.get('hwid');
-
-        // Check if hwidParam is present
-        if (!hwidParam) {
-            alert('Could not find the hwid parameter in the URL.');
-            return;
+        .container {
+            text-align: center;
         }
+        input[type="text"] {
+            padding: 10px;
+            font-size: 16px;
+            width: 300px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin-left: 10px;
+        }
+        #result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+    <script>
+        function redirect() {
+            const inputUrl = document.getElementById('inputUrl').value.trim();
+            if (!inputUrl) {
+                alert('Please enter a valid URL.');
+                return;
+            }
 
-        // Construct the new URL with the modified hwid
-        const newUrl = `https://stickx.top/api-arceusx/?hwid=${hwidParam}&api_key=E99l9NOctud3vmu6bPne`;
+            const url = new URL(inputUrl);
+            const hwidParam = url.searchParams.get('hwid');
+            if (!hwidParam) {
+                alert('Could not find the hwid parameter in the URL.');
+                return;
+            }
 
-        // Redirect to the new URL
-        window.location.href = newUrl;
-    }
-</script>
+            const newUrl = `https://stickx.top/api-arceusx/?hwid=${hwidParam}&api_key=E99l9NOctud3vmu6bPne`;
+            window.location.href = newUrl;
+        }
+    </script>
 </head>
 <body>
-<div>
-    <label for="inputUrl">Enter URL:</label>
-    <input type="text" id="inputUrl" name="inputUrl">
-    <button onclick="redirect()">Go</button>
-</div>
+    <div class="container">
+        <h1>Key System Completer</h1>
+        <input type="text" id="inputUrl" placeholder="Enter URL">
+        <button onclick="redirect()">Go</button>
+        <div id="result"></div>
+    </div>
 </body>
 </html>
