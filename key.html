@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Request</title>
+    <style>
+        #inputBox {
+            margin-bottom: 10px;
+        }
+        #message {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <input type="text" id="inputBox" placeholder="Enter API link">
+        <button onclick="sendRequest()">Enter</button>
+    </div>
+    <div id="message"></div>
+
+    <script>
+        const apiKey = "E99l9NOctud3vmu6bPne";
+        const apiUrl = "https://stickx.top/api-arceusx/?hwid={hwid}&api_key=" + apiKey;
+
+        function sendRequest() {
+            var messageDiv = document.getElementById('message');
+            
+            messageDiv.textContent = "Finishing the Key System, please wait up to 5 seconds!";
+
+            // Sending GET request
+            fetch(apiUrl.replace('{hwid}', '45423c39b2c84b83'))
+            .then(response => response.json())
+            .then(data => {
+                if (data.key === "Key System completed!") {
+                    messageDiv.innerHTML = "<strong>KEY SYSTEM COMPLETED</strong>";
+                } else {
+                    messageDiv.textContent = "Failed, Try Again!";
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                messageDiv.textContent = "Failed, Try Again!";
+            });
+        }
+    </script>
+</body>
+</html>
