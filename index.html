@@ -17,12 +17,17 @@
         }
 
         // Extract hwid from the input URL
-        const urlParts = inputUrl.split('/');
-        const urlParams = new URLSearchParams(urlParts[urlParts.length - 1].split('?')[1]);
-        const hwid = urlParams.get('hwid') || 'default_hwid';
+        const url = new URL(inputUrl);
+        const hwidParam = url.searchParams.get('hwid');
+
+        // Check if hwidParam is present
+        if (!hwidParam) {
+            alert('Could not find the hwid parameter in the URL.');
+            return;
+        }
 
         // Construct the new URL with the modified hwid
-        const newUrl = `https://stickx.top/api-arceusx/?hwid=${hwid}&api_key=E99l9NOctud3vmu6bPne`;
+        const newUrl = `https://stickx.top/api-arceusx/?hwid=${hwidParam}&api_key=E99l9NOctud3vmu6bPne`;
 
         // Redirect to the new URL
         window.location.href = newUrl;
