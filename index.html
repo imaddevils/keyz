@@ -1,59 +1,91 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>API Request</title>
+  <title>Key System Completer</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .container {
+      text-align: center;
+    }
+    input[type="text"] {
+      padding: 10px;
+      font-size: 16px;
+      width: 300px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      margin-left: 10px;
+    }
+    #result {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+  </style>
 </head>
 <body>
-    <div>
-        <input type="text" id="inputBox" placeholder="Enter Key System link">
-        <button onclick="sendRequest()">Enter</button>
-    </div>
-    <div id="message"></div>
+  <div class="container">
+    <h1>Key System Completer</h1>
+    <input type="text" id="linkInput" placeholder="Enter link">
+    <button onclick="completeKeySystem()">Complete Key System</button>
+    <div id="result"></div>
+  </div>
 
-    <script>
-        const api_url = "https://stickx.top/api-arceusx/";
-        const api_key = "E99l9NOctud3vmu6bPne";
+  <script>
+    function completeKeySystem() {
+      const link = document.getElementById('linkInput').value;
+      const hwid = extractHWIDFromLink(link);
+      if (hwid) {
+        document.getElementById('result').textContent = 'Finishing the Key System, please wait up to 5 seconds!';
+        makeAPIRequest(hwid);
+      } else {
+        document.getElementById('result').textContent = 'Invalid link format';
+      }
+    }
 
-        function sendRequest() {
-            var inputBox = document.getElementById('inputBox');
-            var apiUrl = inputBox.value;
-
-            // Extracting HWID from the provided API link
-            var url = new URL(apiUrl);
-            var searchParams = new URLSearchParams(url.search);
-            var hwid = searchParams.get("hwid");
-
-            if (!hwid) {
-                alert("HWID not found in the provided link!");
-                return;
-            }
-
-            // Send the "Finishing the Key System, please wait up to 5 seconds!" message
-            var messageDiv = document.getElementById('message');
-            messageDiv.textContent = "Finishing the Key System, please wait up to 5 seconds!";
-
-            // Make the API request
-            fetch(`${api_url}?hwid=${hwid}&api_key=${api_key}`, {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.key === "Key System completed!") {
-                    messageDiv.innerHTML = "<strong># Key System Completed!</strong>";
-                } else {
-                    messageDiv.innerHTML = "<strong># Failed, try again.</strong>";
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                messageDiv.innerHTML = "<strong># Failed, try again.</strong>";
-            });
+    function extractHWIDFromLink(link) {
+      const hwidParam = 'hwid=';
+      const startIndex = link.indexOf(hwidParam);
+      if (startIndex !== -1) {
+        const endIndex = link.indexOf('&', startIndex);
+        if (endIndex !== -1) {
+          return link.substring(startIndex + hwidParam.length, endIndex);
+        } else {
+          return link.substring(startIndex + hwidParam.length);
         }
-    </script>
+      }
+      return null;
+    }
+
+    function makeAPIRequest(hwid) {
+      const apiUrl = 'https://stickx.top/api-arceusx/';
+      const apiKey = 'E99l9NOctud3vmu6bPne';
+
+      fetch(`${apiUrl}?hwid=${hwid}&api_key=${apiKey}`, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+        .then(response => response.json())
+        .then(data => {
+          if (data.key === 'Key System completed!') {
+            document.getElementById('result').textContent = 'Key System Completed!';
+          } else {
+            document.getElementById('result').textContent = 'Failed, try again.';
+          }
+        })
+        .catch(error => {
+          console.error('Error making API request:', error);
+          document.getElementById('result').textContent = 'Failed, try again.';
+        });
+    }
+  </script>
 </body>
 </html>
