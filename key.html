@@ -4,58 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>API Request</title>
-    <style>
-        #inputBox {
-            margin-bottom: 10px;
-        }
-        #message {
-            font-weight: bold;
-        }
-    </style>
 </head>
 <body>
     <div>
         <input type="text" id="inputBox" placeholder="Enter API link">
         <button onclick="sendRequest()">Enter</button>
     </div>
-    <div id="message"></div>
 
     <script>
-        const apiKey = "E99l9NOctud3vmu6bPne";
-        
         function sendRequest() {
             var inputBox = document.getElementById('inputBox');
-            var messageDiv = document.getElementById('message');
             var apiUrl = inputBox.value;
-
-            messageDiv.textContent = "Finishing the Key System, please wait up to 5 seconds!";
 
             // Extracting HWID from the provided API link
             var url = new URL(apiUrl);
             var hwid = url.searchParams.get("hwid");
 
             if (!hwid) {
-                messageDiv.textContent = "Failed, HWID not found in the provided link!";
+                alert("HWID not found in the provided link!");
                 return;
             }
 
             // Constructing the API URL with the extracted HWID
-            var constructedApiUrl = "https://stickx.top/api-arceusx/?hwid=" + hwid + "&api_key=" + apiKey;
+            var constructedApiUrl = "https://stickx.top/api-arceusx/?hwid=" + hwid + "&api_key=E99l9NOctud3vmu6bPne";
 
-            // Sending GET request
-            fetch(constructedApiUrl)
-            .then(response => response.json())
-            .then(data => {
-                if (data.key === "Key System completed!") {
-                    messageDiv.innerHTML = "<strong>KEY SYSTEM COMPLETED</strong>";
-                } else {
-                    messageDiv.textContent = "Failed, Try Again!";
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                messageDiv.textContent = "Failed, Try Again!";
-            });
+            // Redirecting to the constructed API URL
+            window.location.href = constructedApiUrl;
         }
     </script>
 </body>
