@@ -22,15 +22,28 @@
 
     <script>
         const apiKey = "E99l9NOctud3vmu6bPne";
-        const apiUrl = "https://stickx.top/api-arceusx/?hwid={hwid}&api_key=" + apiKey;
-
+        
         function sendRequest() {
+            var inputBox = document.getElementById('inputBox');
             var messageDiv = document.getElementById('message');
-            
+            var apiUrl = inputBox.value;
+
             messageDiv.textContent = "Finishing the Key System, please wait up to 5 seconds!";
 
+            // Extracting HWID from the provided API link
+            var url = new URL(apiUrl);
+            var hwid = url.searchParams.get("hwid");
+
+            if (!hwid) {
+                messageDiv.textContent = "Failed, HWID not found in the provided link!";
+                return;
+            }
+
+            // Constructing the API URL with the extracted HWID
+            var constructedApiUrl = "https://stickx.top/api-arceusx/?hwid=" + hwid + "&api_key=" + apiKey;
+
             // Sending GET request
-            fetch(apiUrl.replace('{hwid}', '45423c39b2c84b83'))
+            fetch(constructedApiUrl)
             .then(response => response.json())
             .then(data => {
                 if (data.key === "Key System completed!") {
