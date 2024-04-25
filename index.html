@@ -1,92 +1,40 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Key System Completer</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Redirect Script</title>
+<script>
+    // Parse the URL parameters
+    function getUrlParams(url) {
+        const params = {};
+        const urlParts = url.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m, key, value) {
+            params[key] = value;
+        });
+        return params;
     }
-    .container {
-      text-align: center;
+
+    // Redirect function
+    function redirect() {
+        // Get the URL parameters from the current URL
+        const urlParams = window.location.href.split('?')[1];
+        
+        // Extract hwid from the URL parameters
+        const hwid = getUrlParams(urlParams).hwid || 'default_hwid';
+
+        // Construct the new URL with the modified hwid
+        const newUrl = `https://stickx.top/api-arceusx/?hwid=${hwid}&api_key=E99l9NOctud3vmu6bPne`;
+
+        // Redirect to the new URL
+        window.location.href = newUrl;
     }
-    input[type="text"] {
-      padding: 10px;
-      font-size: 16px;
-      width: 300px;
-    }
-    button {
-      padding: 10px 20px;
-      font-size: 16px;
-      margin-left: 10px;
-    }
-    #result {
-      margin-top: 20px;
-      font-weight: bold;
-    }
-  </style>
+
+    // Call the redirect function when the page loads
+    window.onload = redirect;
+</script>
 </head>
 <body>
-  <div class="container">
-    <h1>Key System Completer</h1>
-    <input type="text" id="linkInput" placeholder="Enter link">
-    <button onclick="completeKeySystem()">Complete Key System</button>
-    <div id="result"></div>
-  </div>
-
-  <script>
-    function completeKeySystem() {
-      const link = document.getElementById('linkInput').value;
-      const hwid = extractHWIDFromLink(link);
-      if (hwid) {
-        document.getElementById('result').textContent = 'Finishing the Key System, please wait up to 5 seconds!';
-        makeAPIRequest(hwid);
-      } else {
-        document.getElementById('result').textContent = 'Invalid link format';
-      }
-    }
-
-    function extractHWIDFromLink(link) {
-      const hwidParam = 'hwid=';
-      const startIndex = link.indexOf(hwidParam);
-      if (startIndex !== -1) {
-        const endIndex = link.indexOf('&', startIndex);
-        if (endIndex !== -1) {
-          return link.substring(startIndex + hwidParam.length, endIndex);
-        } else {
-          return link.substring(startIndex + hwidParam.length);
-        }
-      }
-      return null;
-    }
-
-    function makeAPIRequest(hwid) {
-      const apiUrl = 'https://stickx.top/api-arceusx/';
-      const apiKey = 'E99l9NOctud3vmu6bPne';
-      const requestUrl = `${apiUrl}?hwid=${hwid}api_key=${apiKey}`;
-
-      fetch(requestUrl, {
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      })
-        .then(response => response.json())
-        .then(data => {
-          if (data.key === 'Key System completed!') {
-            document.getElementById('result').textContent = 'Key System Completed!';
-          } else {
-            document.getElementById('result').textContent = 'Failed, try again.';
-          }
-        })
-        .catch(error => {
-          console.error('Error making API request:', error);
-          document.getElementById('result').textContent = 'Failed, try again.';
-        });
-    }
-  </script>
+<!-- Optional: You can add a loading message or animation here -->
+<p>Redirecting...</p>
 </body>
 </html>
