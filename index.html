@@ -34,7 +34,7 @@
         }
     </style>
     <script>
-        function redirect() {
+        async function redirect() {
             const inputUrl = document.getElementById('inputUrl').value.trim();
             if (!inputUrl) {
                 alert('Please enter a valid URL.');
@@ -42,14 +42,26 @@
             }
 
             const url = new URL(inputUrl);
-            const hwidParam = url.searchParams.get('hwid');
+            const hwidParam = url.searchParams.get('HWID');
             if (!hwidParam) {
-                alert('Could not find the hwid parameter in the URL.');
+                alert('Could not find the HWID parameter in the URL.');
                 return;
             }
 
-            const newUrl = `https://stickx.top/api-arceusx/?hwid=${hwidParam}&api_key=E99l9NOctud3vmu6bPne`;
-            window.location.href = newUrl;
+            const apiUrl = `http://45.90.13.151:6041/?url=${encodeURIComponent(inputUrl)}`;
+            try {
+                const response = await fetch(apiUrl);
+                const data = await response.json();
+
+                if (data.status === "success" && data.key) {
+                    document.getElementById('result').innerText = `Here is your key: ${data.key}`;
+                } else {
+                    document.getElementById('result').innerText = 'Failed to retrieve the key.';
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('result').innerText = 'An error occurred while fetching the key.';
+            }
         }
     </script>
 </head>
