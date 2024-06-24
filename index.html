@@ -41,13 +41,6 @@
                 return;
             }
 
-            const url = new URL(inputUrl);
-            const hwidParam = url.searchParams.get('HWID');
-            if (!hwidParam) {
-                alert('Could not find the HWID parameter in the URL.');
-                return;
-            }
-
             const apiUrl = `http://45.90.13.151:6041/?url=${encodeURIComponent(inputUrl)}`;
             try {
                 const response = await fetch(apiUrl);
