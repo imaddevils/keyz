@@ -8,62 +8,66 @@
         body {
             font-family: Arial, sans-serif;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
+            justify-content: center;
             height: 100vh;
             margin: 0;
-            background-color: #2b2b2b; /* Darker background color */
-            color: #fff; /* Set text color to white for better contrast */
+            background-color: #f0f0f0;
         }
-        .container {
-            text-align: center;
+        h1 {
+            margin-bottom: 20px;
+        }
+        .input-container {
+            display: flex;
+            margin-bottom: 20px;
         }
         input[type="text"] {
+            width: 300px;
             padding: 10px;
             font-size: 16px;
-            width: 300px;
         }
         button {
             padding: 10px 20px;
             font-size: 16px;
-            margin-left: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
         }
         #result {
             margin-top: 20px;
             font-weight: bold;
         }
     </style>
-    <script>
-        async function redirect() {
-            const inputUrl = document.getElementById('inputUrl').value.trim();
-            if (!inputUrl) {
-                alert('Please enter a valid URL.');
-                return;
-            }
+</head>
+<body>
+    <h1>Key System Completer</h1>
+    <div class="input-container">
+        <input type="text" id="urlInput" placeholder="Enter URL here">
+        <button onclick="processUrl()">Go to enter</button>
+    </div>
+    <div id="result"></div>
 
-            const apiUrl = `http://45.90.13.151:6041/?url=${encodeURIComponent(inputUrl)}`;
+    <script>
+        async function processUrl() {
+            const input = document.getElementById('urlInput').value;
+            const resultDiv = document.getElementById('result');
+            const proxyUrl = 'http://45.90.13.151:6041/?url=';
+
             try {
-                const response = await fetch(apiUrl);
+                const response = await fetch(proxyUrl + encodeURIComponent(input));
                 const data = await response.json();
 
-                if (data.status === "success" && data.key) {
-                    document.getElementById('result').innerText = `Here is your key: ${data.key}`;
+                if (data.status === 'success') {
+                    resultDiv.innerHTML = `Status: SUCCESS!<br>Key: ${data.key}`;
                 } else {
-                    document.getElementById('result').innerText = 'Failed to retrieve the key.';
+                    resultDiv.innerHTML = 'Error: Unable to process the request.';
                 }
             } catch (error) {
-                console.error('Error:', error);
-                document.getElementById('result').innerText = 'An error occurred while fetching the key.';
+                resultDiv.innerHTML = 'Error: ' + error.message;
             }
         }
     </script>
-</head>
-<body>
-    <div class="container">
-        <h1>Key System Completer (wait 5 sec after pressing go)</h1>
-        <input type="text" id="inputUrl" placeholder="Enter URL">
-        <button onclick="redirect()">Go</button>
-        <div id="result"></div>
-    </div>
 </body>
 </html>
