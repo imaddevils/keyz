@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -19,185 +20,124 @@
   <meta property="twitter:description" content="Too lazy to do roblox executors keys? Want to skip those annoying ads? This is the right site for you!" />
   <link rel="stylesheet" href="styl.css">
 </head>
-<b>
 
-  <body
-    style="background-image: url('https://coolbackgrounds.io/images/unsplash/martin-jernberg-unsplash-medium-38843106.jpg'); background-attachment: fixed;">
-    <div class="loader">Bypassing...</div>
-    <div id="form-container">
-      <div class="bigt" style="color: #fff;">skibidi Bypasser</div>
-      <input type="text" id="url" class="textbox" placeholder="URL to bypass" required>
-      <button id="bypassButton" class="button">Bypass</button>
-      <div class="line"></div>
-      <div class="box">
-        <fardt style="color: #fff; text-align: center;">Supported Bypasses:</fardt>
-        <button id="poopie" class="dbutton" style="margin-bottom: 0px; margin-top: 10px;">Supported Websites
-          (List)</button>
-      </div>
-      <script>
-        document.getElementById('poopie').addEventListener('click', function () {
-          window.location.assign("list.html");
-        });
-      </script>
+<body
+  style="background-image: url('https://coolbackgrounds.io/images/unsplash/martin-jernberg-unsplash-medium-38843106.jpg'); background-attachment: fixed;">
+  <div class="loader">Bypassing...</div>
+  <div id="form-container">
+    <div class="bigt" style="color: #fff;">skibidi Bypasser</div>
+    <input type="text" id="url" class="textbox" placeholder="URL to bypass" required>
+    <button id="bypassButton" class="button">Bypass</button>
+  </div>
 
-      <!-- credits -->
-      <div class=box>
-        <fardt style="color: #fff;">Credits:</fardt>
-        <p>
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="red"
-            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-            class="lucide lucide-dna">
-            <path d="M2 15c6.667-6 13.333 0 20-6" />
-            <path d="M9 22c1.798-1.998 2.518-3.995 2.807-5.993" />
-            <path d="M15 2c-1.798 1.998-2.518 3.995-2.807 5.993" />
-            <path d="m17 6-2.5-2.5" />
-            <path d="m14 8-1-1" />
-            <path d="m7 18 2.5 2.5" />
-            <path d="m3.5 14.5.5.5" />
-            <path d="m20 9 .5.5" />
-            <path d="m6.5 12.5 1 1" />
-            <path d="m16.5 10.5 1 1" />
-            <path d="m10 16 1.5 1.5" />
-          </svg>
-          idontgiveaf - UI Developer
-        </p>
-        <p>
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="blue"
-            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-            class="lucide lucide-dna">
-            <path d="M2 15c6.667-6 13.333 0 20-6" />
-            <path d="M9 22c1.798-1.998 2.518-3.995 2.807-5.993" />
-            <path d="M15 2c-1.798 1.998-2.518 3.995-2.807 5.993" />
-            <path d="m17 6-2.5-2.5" />
-            <path d="m14 8-1-1" />
-            <path d="m7 18 2.5 2.5" />
-            <path d="m3.5 14.5.5.5" />
-            <path d="m20 9 .5.5" />
-            <path d="m6.5 12.5 1 1" />
-            <path d="m16.5 10.5 1 1" />
-            <path d="m10 16 1.5 1.5" />
-          </svg>
-          Voidy - Bypass Developer
-        </p>
-      </div>
-
-      <a href="https://discord.gg/YC9pRvB4tk" class="dbutton" style="">Join Discord</a>
-</b>
-
-<script>
-  document.getElementById('bypassButton').addEventListener('click', function () {
-    const urlInput = document.getElementById('url');
-    const url = urlInput.value;
-    if (!url) {
-      // document.body.innerHTML += '<div class="notification">Please enter a URL to bypass.</div>';
-      return;
-    }
-    document.querySelector('.loader').style.display = 'block';
-    let bypassUrl;
-    let bypassType;
-    if (url.includes('spdmteam')) {
-      const hwid = url.split('?hwid=')[1].split('&')[0];
-      bypassUrl = `https://stickx.top/api-arceusx/?hwid=${encodeURIComponent(hwid)}&api_key=E99l9NOctud3vmu6bPne`;
-    } else if (url.includes('mobile.codex.lol')) {
-      const token = url.split('?token=')[1];
-      bypassUrl = `https://stickx.top/api-codex/?token=${encodeURIComponent(token)}&api_key=E99l9NOctud3vmu6bPne`;
-    } else if (url.includes('https://gateway.platoboost.com/a/2569')) {
-      const id = url.split('?id=')[1];
-      bypassUrl = `https://stickx.top/api-hydrogen/?hwid=${encodeURIComponent(id)}&api_key=E99l9NOctud3vmu6bPne`;
-    } else if (url.includes('hohohubv')) {
-      const hwid = url.split('?hwid=')[1];
-      bypassUrl = `https://stickx.top/api-hohohubv/?hwid=${encodeURIComponent(hwid)}&api_key=E99l9NOctud3vmu6bPne`;
-    } else if (url.includes('trigonevo.com') || url.includes('https://pandadevelopment.net/getkey?service=trigon-evo')) {
-      const hwid = url.includes('trigonevo.com') ? url.split('/?hwid=')[1] : url.split('&hwid=')[1];
-      bypassUrl = `https://stickx.top/api-trigon/?hwid=${encodeURIComponent(hwid)}&api_key=E99l9NOctud3vmu6bPne`;
-    } else if (url.includes('https://gateway.platoboost.com/a/8')) {
-      const id = url.split('?id=')[1];
-      bypassUrl = `https://stickx.top/api-delta/?hwid=${encodeURIComponent(id)}&api_key=E99l9NOctud3vmu6bPne`;
-    } else if (url.includes('https://pandadevelopment.net/getkey?service=vegax')) {
-      const hwid = url.split('&hwid=')[1];
-      bypassUrl = `https://stickx.top/api-vegax/?hwid=${encodeURIComponent(hwid)}&api_key=E99l9NOctud3vmu6bPne`;
-    } else if (url.includes('https://flux.li/android/external/start.php?HWID=')) {
-      const hwid = url.split('?HWID=')[1];
-      bypassUrl = `https://stickx.top/api-fluxus/?hwid=${encodeURIComponent(hwid)}&api_key=E99l9NOctud3vmu6bPne`;
-    } else {
-      bypassType = 'yes'
-      bypassUrl = `https://ethos-api-temp.onrender.com/api/bypass?link=${encodeURIComponent(url)}`;
-    }
-
-    if (bypassType !== 'yes' && bypassType !== 'key') {
-      document.querySelector('.loader').style.display = 'none';
-
-      fetch(bypassUrl).then(response => response.json()).then(data => {
-
-        if (data.key) {
-          const bypassContainer = document.getElementById('form-container');
-          bypassContainer.innerHTML = `
-                        <div style="color: #fff;">
-                          <h2>Success! Your key is:</h2>
-                          <input type="text" class="textbox" value="${data.key}" readonly>
-                          <div class="box">
-                            <button id="copyButton" class="button" style="width: auto; height: clamp(80px, calc(15vh - 10px), 160px);">Copy</button>
-                            <button id="newLinkButton" class="button" style="height: clamp(80px, calc(15vh - 10px), 160px);">Bypass New Link</button>
-                            </div>
-                          </div>`;
-          document.getElementById('copyButton').addEventListener('click', function () {
-            const keyInput = document.querySelector('.textbox');
-            keyInput.select();
-            document.execCommand('copy');
-            // document.body.innerHTML += `<div class="notification" onclick="setTimeout(function() { this.parentNode.removeChild(this); }, 1000)"> Copied key successfully!</div>`
-
-
-          });
-          newLinkButton.addEventListener('click', function () {
-            location.reload();
-          });
-
-
-          newLinkButton.style.display = 'block';
-        } else {
-          if (data.message && data.message === "Invalid HWID") {
-            urlInput.value = "Invalid HWID";
-          } else {
-            alert("Bypass failed.");
-          }
-        }
-      }).catch(error => {
-        document.querySelector('.loader').style.display = 'none';
-        console.error('Error:', error);
-        alert("Bypass success, if an error occured join our discord to report this issue.")
-      });
-    } else {
-      fetch(bypassUrl).then(response => response.json()).then(data => {
-        document.querySelector('.loader').style.display = 'none';
-
-        if (typeof data.bypassed !== 'undefined') {
-          const bypassContainer = document.getElementById('form-container');
-          bypassContainer.innerHTML = `
-                        <div style="color: #fff;">
-                          <h2>Success! Your link is:</h2>
-                          <input type="text" class="textbox" value="${data.bypassed}" readonly>
-                          <div class="box">
-                            <button id="copyButton" class="button" style="width: auto; height: clamp(80px, calc(15vh - 10px), 160px);">Copy</button>
-                            <button id="newLinkButton" class="button" style="height: clamp(80px, calc(15vh - 10px), 160px);">Bypass New Link</button>
-                            </div>
-                          </div>`;
-          document.getElementById('copyButton').addEventListener('click', function () {
-            const keyInput = document.querySelector('.textbox');
-            keyInput.select();
-            document.execCommand('copy');
-            // document.body.innerHTML += `<div class="notification" onclick="setTimeout(function() { this.parentNode.removeChild(this); }, 1000)"> Copied key successfully!</div>`
-          })
-          newLinkButton.addEventListener('click', function () {
-            location.reload();
-          });
-        } else {
-          alert("Invaild URL.");
-        }
+  <script>
+    document.getElementById('bypassButton').addEventListener('click', function () {
+      const urlInput = document.getElementById('url');
+      const url = urlInput.value;
+      if (!url) {
+        return;
       }
-      )
-    }
+      document.querySelector('.loader').style.display = 'block';
+      let bypassUrl;
+      let bypassType;
 
-  });</script>
+      if (url.includes('spdmteam')) {
+        const hwid = url.split('?hwid=')[1].split('&')[0];
+        bypassUrl = `https://stickx.top/api-arceusx/?hwid=${encodeURIComponent(hwid)}&api_key=E99l9NOctud3vmu6bPne`;
+      } else if (url.includes('mobile.codex.lol')) {
+        const token = url.split('?token=')[1];
+        bypassUrl = `https://stickx.top/api-codex/?token=${encodeURIComponent(token)}&api_key=E99l9NOctud3vmu6bPne`;
+      } else if (url.includes('https://gateway.platoboost.com/a/2569')) {
+        const id = url.split('?id=')[1];
+        bypassUrl = `https://stickx.top/api-hydrogen/?hwid=${encodeURIComponent(id)}&api_key=E99l9NOctud3vmu6bPne`;
+      } else if (url.includes('hohohubv')) {
+        const hwid = url.split('?hwid=')[1];
+        bypassUrl = `https://stickx.top/api-hohohubv/?hwid=${encodeURIComponent(hwid)}&api_key=E99l9NOctud3vmu6bPne`;
+      } else if (url.includes('trigonevo.com') || url.includes('https://pandadevelopment.net/getkey?service=trigon-evo')) {
+        const hwid = url.includes('trigonevo.com') ? url.split('/?hwid=')[1] : url.split('&hwid=')[1];
+        bypassUrl = `https://stickx.top/api-trigon/?hwid=${encodeURIComponent(hwid)}&api_key=E99l9NOctud3vmu6bPne`;
+      } else if (url.includes('https://gateway.platoboost.com/a/8')) {
+        const id = url.split('?id=')[1];
+        bypassUrl = `https://stickx.top/api-delta/?hwid=${encodeURIComponent(id)}&api_key=E99l9NOctud3vmu6bPne`;
+      } else if (url.includes('https://pandadevelopment.net/getkey?service=vegax')) {
+        const hwid = url.split('&hwid=')[1];
+        bypassUrl = `https://stickx.top/api-vegax/?hwid=${encodeURIComponent(hwid)}&api_key=E99l9NOctud3vmu6bPne`;
+      } else if (url.includes('https://flux.li/android/external/start.php?HWID=')) {
+        const hwid = url.split('?HWID=')[1];
+        bypassUrl = `https://stickx.top/api-fluxus/?hwid=${encodeURIComponent(hwid)}&api_key=E99l9NOctud3vmu6bPne`;
+      } else {
+        bypassType = 'yes';
+        bypassUrl = `https://ethos-api-temp.onrender.com/api/bypass?link=${encodeURIComponent(url)}`;
+      }
+
+      if (bypassType !== 'yes' && bypassType !== 'key') {
+        document.querySelector('.loader').style.display = 'none';
+
+        fetch(bypassUrl).then(response => response.json()).then(data => {
+          if (data.key) {
+            const bypassContainer = document.getElementById('form-container');
+            bypassContainer.innerHTML = `
+              <div style="color: #fff;">
+                <h2>Success! Your key is:</h2>
+                <input type="text" class="textbox" value="${data.key}" readonly>
+                <div class="box">
+                  <button id="copyButton" class="button" style="width: auto; height: clamp(80px, calc(15vh - 10px), 160px);">Copy</button>
+                  <button id="newLinkButton" class="button" style="height: clamp(80px, calc(15vh - 10px), 160px);">Bypass New Link</button>
+                </div>
+              </div>`;
+            document.getElementById('copyButton').addEventListener('click', function () {
+              const keyInput = document.querySelector('.textbox');
+              keyInput.select();
+              document.execCommand('copy');
+            });
+            newLinkButton.addEventListener('click', function () {
+              location.reload();
+            });
+
+            newLinkButton.style.display = 'block';
+          } else {
+            if (data.message && data.message === "Invalid HWID") {
+              urlInput.value = "Invalid HWID";
+            } else {
+              alert("Bypass failed.");
+            }
+          }
+        }).catch(error => {
+          document.querySelector('.loader').style.display = 'none';
+          console.error('Error:', error);
+          alert("Bypass success, if an error occured join our discord to report this issue.");
+        });
+      } else {
+        fetch(bypassUrl).then(response => response.json()).then(data => {
+          document.querySelector('.loader').style.display = 'none';
+
+          if (typeof data.bypassed !== 'undefined') {
+            const bypassContainer = document.getElementById('form-container');
+            bypassContainer.innerHTML = `
+              <div style="color: #fff;">
+                <h2>Success! Your link is:</h2>
+                <input type="text" class="textbox" value="${data.bypassed}" readonly>
+                <div class="box">
+                  <button id="copyButton" class="button" style="width: auto; height: clamp(80px, calc(15vh - 10px), 160px);">Copy</button>
+                  <button id="newLinkButton" class="button" style="height: clamp(80px, calc(15vh - 10px), 160px);">Bypass New Link</button>
+                </div>
+              </div>`;
+            document.getElementById('copyButton').addEventListener('click', function () {
+              const keyInput = document.querySelector('.textbox');
+              keyInput.select();
+              document.execCommand('copy');
+            });
+            newLinkButton.addEventListener('click', function () {
+              location.reload();
+            });
+          } else {
+            alert("Invalid URL.");
+          }
+        });
+      }
+
+    });
+  </script>
 </body>
 
 </html>
